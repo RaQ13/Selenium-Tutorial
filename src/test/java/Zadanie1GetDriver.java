@@ -1,6 +1,4 @@
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.InvalidArgumentException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -18,6 +16,15 @@ public class Zadanie1GetDriver {
 
         Dimension windowSize = new Dimension(200,300); //ustawia rozmiar okna
         driver.manage().window().setSize(windowSize); //korzysta z obiektu Dimension
+
+        //otwieranie okna za pomoca skryptu dla zobaczenia różnicy miedzy quit a close
+
+        JavascriptExecutor executor = (JavascriptExecutor) driver; //pełny zapis
+        executor.executeScript("window.open('https://www.testeroprogramowania.pl', 'blank', 'height=200, width=200')");
+//        ((JavascriptException)driver) //zapis skrócony
+
+//        driver.quit(); //zamyka wszystkie okna
+        driver.close(); //zamyka pierwotne okno, te generowane skryptem zostaje
     }
 
     public WebDriver getDriver(String browser) {
