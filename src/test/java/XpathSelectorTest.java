@@ -85,5 +85,25 @@ public class XpathSelectorTest {
 
         //różnica między findElement a findElements jest taka, że findElemetns nie zwróci wyjątku
         //jeżeli element nie zostanie odnaleziony - zwróci pustą tablicę
+
+        /** cześć 3 */
+
+        By attrEq = By.xpath("//button[@id='clickOnMe']");
+        By attrNotEq = By.xpath("//*[@id!='clickOnMe']");
+        By attrContains = By.xpath("//*[contains(@name, 'ame')]");
+        By startsWith = By.xpath("//*[starts-with(@name, 'user')]");
+
+        //nie działa w niektórych wersjach xpath
+//        By endsWith = By.xpath("//*[ends-with(@name, 'name')]");
+        /** alternatywna wersja dla ends-with */
+
+        By endsWith = By.xpath("//*[substring(@name, string-length(@name)-string-length('name')+1)='name']");
+
+        driver.findElement(attrEq);
+        driver.findElement(attrNotEq);
+        driver.findElement(attrContains);
+        driver.findElement(startsWith);
+        driver.findElement(endsWith);
+
     }
 }
