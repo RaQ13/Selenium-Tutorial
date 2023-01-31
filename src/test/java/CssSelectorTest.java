@@ -62,6 +62,22 @@ public class CssSelectorTest {
         driver.findElement(attrStarts);
         driver.findElement(attrEnds);
 
+
+        /** cz 4 wybieranie dzieci elementów */
+
+        By firstChild = By.cssSelector("li:first-child");
+        By lastChild = By.cssSelector("li:last-child");
+        By nChild = By.cssSelector("li:nth-child(1)");
+        By nChild2 = By.cssSelector("li:nth-child(3)");
+
+        driver.findElement(firstChild);
+        driver.findElement(lastChild);
+        driver.findElement(nChild);
+        driver.findElement(nChild2);
+
+
+
+
         driver.quit();
     }
 }
