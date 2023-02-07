@@ -12,9 +12,10 @@ public class BasicActionsTest {
 
     @Test
     public void performAction() {
-        ChromeOptions options = new ChromeOptions();
-        options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.ACCEPT);
-        WebDriver driver = new ChromeDriver(options);
+//        ChromeOptions options = new ChromeOptions();
+//        options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.ACCEPT);
+//        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/");
 
         WebElement basicPageLink = driver.findElement(By.linkText("Podstawowa strona testowa"));
@@ -24,7 +25,7 @@ public class BasicActionsTest {
 
         /** 1. klik */
 
-        driver.findElement(By.id("clickOnMe")).click();
+//        driver.findElement(By.id("clickOnMe")).click();
         driver.findElement(By.id("fname")).click();
 
         /** 2. send keys */
@@ -77,5 +78,16 @@ public class BasicActionsTest {
         System.out.println("By attrValue: " + param.getAttribute("value"));
         //pobranie tekstu elementu który jest ukryty:
         System.out.println("By attrContent: " + param.getAttribute("textContent"));
+
+        /** Obsługa alertów */
+
+        //alert będzie nieobslużony jeżeli po jego pojawieniu program wykonuje kolejną instrukcje pomijając go
+        usernameInput.sendKeys(Keys.ENTER); //wysyła formularz i wywołuje 1 alert
+        Alert firstAlert = driver.switchTo().alert();
+        firstAlert.accept();
+        driver.switchTo().alert().accept();
+        //prócz accept są tez inne metody: dismiss() i sendKeys()
+        driver.findElement(By.cssSelector("[type='checkbox']")).click(); //kolejna instrukcja po alertach
+
     }
 }
