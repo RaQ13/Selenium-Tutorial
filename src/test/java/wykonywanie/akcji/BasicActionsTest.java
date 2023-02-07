@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class BasicActionsTest {
 
     @Test
@@ -16,7 +18,9 @@ public class BasicActionsTest {
         driver.get("https://testeroprogramowania.github.io/selenium/");
 
         WebElement basicPageLink = driver.findElement(By.linkText("Podstawowa strona testowa"));
+        System.out.println(basicPageLink.getText()); // get text musi być przed klikiem
         basicPageLink.click();
+//        System.out.println(basicPageLink.getText()); // w tym wypadku: stale element reference: element is not attached to the page document
 
         /** 1. klik */
 
@@ -49,5 +53,18 @@ public class BasicActionsTest {
         cars.selectByIndex(2);// by index start od 0
         cars.selectByVisibleText("Saab");
         cars.selectByValue("audi");
+
+        //pobranie wszystkich możliwych opcji
+        List<WebElement> selectOptions = cars.getOptions();
+        for (WebElement option : selectOptions) {
+            System.out.println(option.getText());
+        }
+
+        /** Import zadania */
+
+        ZadanieIsExistInSelect opcja = new ZadanieIsExistInSelect();
+        System.out.println(opcja.isExisting("Jeep", selectCar));
+        System.out.println(opcja.isExisting("Audi", selectCar));
+
     }
 }
