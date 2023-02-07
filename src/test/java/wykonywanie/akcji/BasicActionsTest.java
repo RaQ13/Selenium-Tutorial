@@ -70,5 +70,12 @@ public class BasicActionsTest {
         System.out.println(usernameInput.getText()); // nie można pobrać tekstu w polu inpit
         System.out.println(usernameInput.getAttribute("value")); //prawidłowa wprowadzona wartość w input
 
+        /** 7. pobranie wartości z ukrytego elementu */
+
+        WebElement param = driver.findElement(By.cssSelector(".topSecret"));
+        System.out.println("By text: " + param.getText());
+        System.out.println("By attrValue: " + param.getAttribute("value"));
+        //pobranie tekstu elementu który jest ukryty:
+        System.out.println("By attrContent: " + param.getAttribute("textContent"));
     }
 }
