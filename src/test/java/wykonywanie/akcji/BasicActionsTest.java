@@ -79,7 +79,7 @@ public class BasicActionsTest {
         //pobranie tekstu elementu który jest ukryty:
         System.out.println("By attrContent: " + param.getAttribute("textContent"));
 
-        /** Obsługa alertów */
+        /** 8. Obsługa alertów */
 
         //alert będzie nieobslużony jeżeli po jego pojawieniu program wykonuje kolejną instrukcje pomijając go
         usernameInput.sendKeys(Keys.ENTER); //wysyła formularz i wywołuje 1 alert
