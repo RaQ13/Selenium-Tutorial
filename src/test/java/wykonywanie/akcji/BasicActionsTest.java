@@ -19,7 +19,21 @@ public class BasicActionsTest {
 
         WebElement basicPageLink = driver.findElement(By.linkText("Podstawowa strona testowa"));
         basicPageLink.click();
+
+        /** 1. klik */
+
         driver.findElement(By.id("clickOnMe")).click();
         driver.findElement(By.id("fname")).click();
+
+        /** 2. send keys */
+
+        //nie trzeba wywołyać najpierw klik, mozna od razu send keys
+        driver.findElement(By.name("fname")).sendKeys("Genowef");
+        WebElement usernameInput = driver.findElement(By.name("username"));
+        usernameInput.clear(); //usuwa wpisane dane
+        usernameInput.sendKeys("admin");
+
+
+
     }
 }
