@@ -61,5 +61,21 @@ public class SelectorTest {
         By partalLinkLocator = By.partialLinkText("Visit");
         WebElement partialLinkText = driver.findElement(partalLinkLocator);
 
+
+        /** Podsumowanie */
+
+        //1. By.id - jest teoretycznie najlepszą opcją, id powinno być unikalne i
+        // wyszukiwanie jest dosyć szybkie
+
+        //2. By.name gdy nie ma id najlepiej szukać po atrybucie name
+
+        //3. Znajdowanie linków: By.linkText i By.partialLinkText
+
+        //4. jeżeli nie ma id, name lubi nie lokalizuje się linków to selektory css
+
+        //5. Xpath jest najwolniejszy ale pozwala na zbudowanie rozbudowanych selektorów
+
+        //6. By.tagName i By.className - dla znajdowania grupy plików
+
     }
 }
