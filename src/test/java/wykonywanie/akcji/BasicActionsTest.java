@@ -66,5 +66,9 @@ public class BasicActionsTest {
         System.out.println(opcja.isExisting("Jeep", selectCar));
         System.out.println(opcja.isExisting("Audi", selectCar));
 
+        /** 6. pobieranie wartości z inputa */
+        System.out.println(usernameInput.getText()); // nie można pobrać tekstu w polu inpit
+        System.out.println(usernameInput.getAttribute("value")); //prawidłowa wprowadzona wartość w input
+
     }
 }
