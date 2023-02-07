@@ -1,3 +1,5 @@
+package znajdowanie.elementow;
+
 public class SubstringTest {
     public static void main(String[] args) {
         String test = "username";
