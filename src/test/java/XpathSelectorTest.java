@@ -21,7 +21,7 @@ public class XpathSelectorTest {
         By fullPath = By.xpath("/html/body/button");
         driver.findElement(fullPath);
 
-        By fullPath2 = By.xpath("html/body/table/tbody/tr");
+        By fullPath2 = By.xpath("/html/body/table/tbody/tr");
         driver.findElement(fullPath2);
 
         //z podwójmnym // - szukanie w całej strukturze
@@ -105,5 +105,35 @@ public class XpathSelectorTest {
         driver.findElement(startsWith);
         driver.findElement(endsWith);
 
+        /** część 4 */
+
+        By child = By.xpath("//div/child::ul"); //dziecko diva o tagu ul
+        By parent = By.xpath("//div/../..");
+        By desc = By.xpath("//div/descendant::ul"); //wszystko co pod divem i tagiem ul
+        By asc = By.xpath("//div/ancestor::*"); //wszystko co nad divem
+        By following = By.xpath("//img/following::*"); //wszystkie tagi po img
+        By followingSibling = By.xpath("//img/following-sibling::*"); //wszystkie tagi na tym samym poziomie co img
+        By preceding = By.xpath("//img/preceding::*"); //wszystkie tagi przed img
+        By precedingSiblings = By.xpath("//img/preceding-sibling::*"); //wszystkie tagi przed img na tym samym poziomie
+
+        driver.findElement(child);
+        driver.findElement(parent);
+        driver.findElements(desc);
+        driver.findElements(asc);
+        driver.findElements(following);
+        driver.findElements(followingSibling);
+        driver.findElements(preceding);
+        driver.findElements(precedingSiblings);
+
+        /** część 5 */
+        //and or
+
+        By divsAndLinks = By.xpath("//a | //div"); // zwraca wszystkie a i wszystkie div
+        By andOp = By.xpath("//input[@name='fname' and @id='fname']"); // 2 właściwości muszą być spełnione
+        By orOp = By.xpath("//input[@name='fname' and @id='fname']"); // pierwszy lub drugi
+
+        driver.findElement(divsAndLinks);
+        driver.findElement(andOp);
+        driver.findElement(orOp);
     }
 }
