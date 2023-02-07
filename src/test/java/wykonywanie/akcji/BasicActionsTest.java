@@ -1,11 +1,9 @@
 package wykonywanie.akcji;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.UnexpectedAlertBehaviour;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class BasicActionsTest {
@@ -33,7 +31,23 @@ public class BasicActionsTest {
         usernameInput.clear(); //usuwa wpisane dane
         usernameInput.sendKeys("admin");
 
+        /** 3. send keys kalwisze specjalne */
 
+//        usernameInput.sendKeys(Keys.ENTER);
+        usernameInput.sendKeys(Keys.TAB);
 
+        /** 4. checkbox i radio */
+
+        driver.findElement(By.cssSelector("[type='checkbox']")).click();
+        driver.findElement(By.cssSelector("[value='male']")).click();
+
+        /** 5. wybieranie pola z select */
+
+        WebElement selectCar = driver.findElement(By.cssSelector("select"));
+        // dedykowana klasa dla wybierania opcji z selecta od org.openqa.selenium.support.ui
+        Select cars = new Select(selectCar);
+        cars.selectByIndex(2);// by index start od 0
+        cars.selectByVisibleText("Saab");
+        cars.selectByValue("audi");
     }
 }
