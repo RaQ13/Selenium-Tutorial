@@ -16,6 +16,10 @@ public class JavaScrtiptExecutorTest {
         WebElement basicPageLink = driver.findElement(By.linkText("Podstawowa strona testowa"));
 //        basicPageLink.click();
         JavascriptExecutor executor = (JavascriptExecutor) driver;
+        //zamiast .click()
         executor.executeScript("arguments[0].click()",basicPageLink);
+        WebElement firstName = driver.findElement(By.name("fname"));
+        //zamiast .sendKeys()
+        executor.executeScript("arguments[0].setAttribute('value', 'imie')", firstName);
     }
 }
