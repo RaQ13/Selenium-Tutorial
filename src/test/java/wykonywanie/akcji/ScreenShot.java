@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -19,5 +20,12 @@ public class ScreenShot {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(srcFile,new File("src/test/resources/screen.png"));
+        //alternatywa dla nowszych wersji mavena
+        try {
+            File srcFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileHandler.copy(srcFile1, new File("src/test/resources/screen1.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
