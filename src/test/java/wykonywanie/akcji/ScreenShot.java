@@ -1,15 +1,21 @@
 package wykonywanie.akcji;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
+import org.python.antlr.ast.Str;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ScreenShot {
 
@@ -27,5 +33,21 @@ public class ScreenShot {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /** screny z unikalnymi nazwami */
+
+        //z użyciem daty
+        String pattern = "yyyy-MM-dd--HH-mm-ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        System.out.println(date);
+
+        String fileNameDateBefore = "src/test/resources/screenprzedwrzutem-" + date + ".png";
+        String fileNameDateAfter = "src/test/resources/screenpowrzucie-" + date + ".png";
+        File beforeUpload = screenshot.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(beforeUpload, new File(fileNameDateBefore));
+        driver.findElement(By.id("myFile")).sendKeys("C:\\Users\\Marcin Najwer\\Desktop\\test\\tekst.txt");
+        File afterUpload = screenshot.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(afterUpload, new File(fileNameDateAfter));
     }
 }
