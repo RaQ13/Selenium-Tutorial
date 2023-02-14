@@ -16,6 +16,16 @@ public class ActionsTest {
         /** klik prawym przyciskiem myszy */
 
         Actions actions = new Actions(driver);
-        actions.contextClick(driver.findElement(By.id("myFile"))).perform();
+//        actions.contextClick(driver.findElement(By.id("myFile"))).perform();
+
+        /** podwójny klik */
+
+//        driver.get("https://testeroprogramowania.github.io/selenium/doubleclick.html");
+//        actions.doubleClick(driver.findElement(By.id("bottom"))).perform();
+
+        driver.get("https://testeroprogramowania.github.io/selenium/basics.html");
+
+        //symulacja najechaia myszki, sam kursor sie nie rusza
+        actions.moveToElement(driver.findElement(By.tagName("h1"))).perform();
     }
 }
