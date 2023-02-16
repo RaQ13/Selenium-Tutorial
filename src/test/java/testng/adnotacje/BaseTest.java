@@ -1,11 +1,28 @@
-package testng;
+package testng.adnotacje;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 public class BaseTest {
+
+    @BeforeSuite
+    public void beforeSuite() {
+        System.out.println("before suite");
+    }
+
+    @BeforeClass
+    public void beforeClass() {
+        System.out.println("before class");
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        System.out.println("after suite");
+    }
+
+    @AfterClass
+    public void afterClass() {
+        System.out.println("after class");
+    }
 
     @BeforeTest
     public void beforetest() {

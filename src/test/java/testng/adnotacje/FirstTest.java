@@ -1,4 +1,4 @@
-package testng;
+package testng.adnotacje;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,9 +12,10 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class SecondTest extends BaseTest{
+public class FirstTest extends BaseTest{
 
     WebDriver driver;
+
     @Test
     public void firstTest() {
         driver = new ChromeDriver();
@@ -24,6 +25,7 @@ public class SecondTest extends BaseTest{
 
         String paramText = driver.findElement(By.cssSelector("p")).getText();
         Assert.assertEquals(paramText, "Dopiero się pojawiłem!");
+        driver.quit();
     }
 
     @Test
@@ -35,7 +37,6 @@ public class SecondTest extends BaseTest{
 
         String paramText = driver.findElement(By.cssSelector("p")).getText();
         Assert.assertEquals(paramText, "Dopiero się pojawiłem!");
-        driver.quit();
     }
 
     public void waitForElementForExist(By locator) {
