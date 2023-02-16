@@ -1,4 +1,4 @@
-package wykonywanie.akcji;
+package wykonywanie.akcji.sprawdzanie.stanu;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -29,6 +29,14 @@ public class ElementExistTest {
         System.out.println(driver.findElement(By.tagName("p")).isDisplayed());
         System.out.println(driver.findElement(By.tagName("button")).isDisplayed());
 
+        //czy jest dostepny i mozna z nim wejsc w interakcje
+        System.out.println(driver.findElement(By.tagName("button")).isEnabled());
+
+        //czy checkbox jest zaznaczony
+        WebElement checkbox = driver.findElement(By.cssSelector("input[type='checkbox']"));
+        System.out.println(checkbox.isSelected());
+        checkbox.click();
+        System.out.println(checkbox.isSelected());
 
     }
 
