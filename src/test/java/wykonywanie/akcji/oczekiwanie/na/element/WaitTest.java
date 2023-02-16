@@ -12,7 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class WaitTest {
 
@@ -53,11 +55,11 @@ public class WaitTest {
 
         //domyślnie nie ignoruje wyjątków
 
-//        driver.findElement(By.id("clickOnMe")).click();
-//        FluentWait<WebDriver> wait = new FluentWait<>(driver);
-//        wait.ignoring(NoSuchElementException.class); //musi być z org.openqa.selenium
-//        wait.pollingEvery(Duration.ofSeconds(1));// sprawdzanie warunku - interval
-//        wait.withTimeout(Duration.ofSeconds(10)); //timeout konfigurowany z withTimeout
+        driver.findElement(By.id("clickOnMe")).click();
+        FluentWait<WebDriver> wait = new FluentWait<>(driver);
+        wait.ignoring(NoSuchElementException.class); //musi być z org.openqa.selenium
+        wait.pollingEvery(Duration.ofSeconds(1));// sprawdzanie warunku - interval
+        wait.withTimeout(Duration.ofSeconds(10)); //timeout konfigurowany z withTimeout
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("p")));
 //        driver.findElement(By.cssSelector("p"));
 
@@ -74,5 +76,30 @@ public class WaitTest {
 //        //od razu jest wyrzucany wyjatek mimo ignoring
 //        driver.findElement(By.cssSelector("p"));
 
+        waitForElementForExist(By.cssSelector("p"));
+    }
+
+    public void waitForElementForExist(By locator) {
+        FluentWait<WebDriver> wait = new FluentWait<>(driver);
+        wait.ignoring(NoSuchElementException.class);
+        wait.pollingEvery(Duration.ofSeconds(1));
+        wait.withTimeout(Duration.ofSeconds(10));
+
+        /** niestandardowy warunek dla wait */
+
+        //skorzystanie z klasy anonimowej i zwracanie boolean
+        wait.until(new Function<WebDriver, Boolean>() {
+            @Override
+            public Boolean apply(WebDriver webDriver) {
+                List<WebElement> elements = driver.findElements(locator);
+                if (elements.size() > 0) {
+                    System.out.println("Element jest na stronie");
+                    return true;
+                } else {
+                    System.out.println("Elementu nie ma na stronie");
+                    return false;
+                }
+            }
+        });
     }
 }
