@@ -4,6 +4,7 @@ import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -52,12 +53,26 @@ public class WaitTest {
 
         //domyślnie nie ignoruje wyjątków
 
-        driver.findElement(By.id("clickOnMe")).click();
-        FluentWait<WebDriver> wait = new FluentWait<>(driver);
-        wait.ignoring(NoSuchElementException.class); //musi być z org.openqa.selenium
-        wait.pollingEvery(Duration.ofSeconds(1));// sprawdzanie warunku - interval
-        wait.withTimeout(Duration.ofSeconds(10)); //timeout konfigurowany z withTimeout
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("p")));
-        driver.findElement(By.cssSelector("p"));
+//        driver.findElement(By.id("clickOnMe")).click();
+//        FluentWait<WebDriver> wait = new FluentWait<>(driver);
+//        wait.ignoring(NoSuchElementException.class); //musi być z org.openqa.selenium
+//        wait.pollingEvery(Duration.ofSeconds(1));// sprawdzanie warunku - interval
+//        wait.withTimeout(Duration.ofSeconds(10)); //timeout konfigurowany z withTimeout
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("p")));
+//        driver.findElement(By.cssSelector("p"));
+
+        /** Więcej o expectedConditions */
+//        driver.findElement(By.id("clickOnMe")).click();
+//        FluentWait<WebDriver> wait = new FluentWait<>(driver);
+//        wait.ignoring(NoSuchElementException.class);
+//        wait.pollingEvery(Duration.ofSeconds(1));
+//        wait.withTimeout(Duration.ofSeconds(10));
+////        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.tagName("pa"))));
+//        //visibilitiOf przyjmuje webElement - to wyrzuca od razu wyjatęk mimo wait i ignopring
+//        //wcześniej można było dać jako argument więcej niż tylko sam lokator, to wyrzucało od razu wyjątek
+////        wait.until(ExpectedConditions.visibilityOfElementLocated(driver.findElement(By.tagName("pa")))));
+//        //od razu jest wyrzucany wyjatek mimo ignoring
+//        driver.findElement(By.cssSelector("p"));
+
     }
 }
