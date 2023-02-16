@@ -4,15 +4,20 @@ import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class WaitTest {
 
+    WebDriver driver;
+
     @Test
     public void waitForElement() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/wait2.html");
 
         /** sleep */
@@ -26,9 +31,17 @@ public class WaitTest {
 
         //jeżeli nie znajdzie elementu zatrzumje cały skrypt, przez określony czas nie wyrzuca błedu
         //będzie sprawdzał i odpytywał stronę o ten element, jeżeli znajdzie to idzie dalej
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.id("clickOnMe")).click();
-        driver.findElement(By.cssSelector("p"));
 
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.findElement(By.id("clickOnMe")).click();
+//        driver.findElement(By.cssSelector("p"));
+
+        /** ExplicityWait */
+
+
+        driver.findElement(By.id("clickOnMe")).click();
+//        WebDriverWait wait = new WebDriverWait(driver, 10); //błąd z sekundami w wait
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("p")));
     }
 }
