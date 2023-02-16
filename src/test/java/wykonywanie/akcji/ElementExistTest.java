@@ -3,6 +3,7 @@ package wykonywanie.akcji;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -23,6 +24,12 @@ public class ElementExistTest {
         System.out.println(elementExist2(By.id("topSecret")));
 //        driver.findElement(By.tagName("p"));
 //        driver.findElement(By.id("topSecret"));
+
+        // czy element jest widoczny
+        System.out.println(driver.findElement(By.tagName("p")).isDisplayed());
+        System.out.println(driver.findElement(By.tagName("button")).isDisplayed());
+
+
     }
 
     // true false z obsluga wyjatku w try catch
