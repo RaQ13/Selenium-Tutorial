@@ -17,8 +17,17 @@ public class WaitTest {
 
         /** sleep */
 
+//        driver.findElement(By.id("clickOnMe")).click();
+//        Thread.sleep(5000); //na sztywno napisana wartość
+//        driver.findElement(By.cssSelector("p"));
+
+
+        /** ImplicitlyWait */
+
+        //jeżeli nie znajdzie elementu zatrzumje cały skrypt, przez określony czas nie wyrzuca błedu
+        //będzie sprawdzał i odpytywał stronę o ten element, jeżeli znajdzie to idzie dalej
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.id("clickOnMe")).click();
-        Thread.sleep(5000); //na sztywno napisana wartość
         driver.findElement(By.cssSelector("p"));
 
     }
