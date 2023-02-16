@@ -88,17 +88,30 @@ public class WaitTest {
         /** niestandardowy warunek dla wait */
 
         //skorzystanie z klasy anonimowej i zwracanie boolean
-        wait.until(new Function<WebDriver, Boolean>() {
-            @Override
-            public Boolean apply(WebDriver webDriver) {
-                List<WebElement> elements = driver.findElements(locator);
-                if (elements.size() > 0) {
-                    System.out.println("Element jest na stronie");
-                    return true;
-                } else {
-                    System.out.println("Elementu nie ma na stronie");
-                    return false;
-                }
+//        wait.until(new Function<WebDriver, Boolean>() {
+//            @Override
+//            public Boolean apply(WebDriver webDriver) {
+//                List<WebElement> elements = driver.findElements(locator);
+//                if (elements.size() > 0) {
+//                    System.out.println("Element jest na stronie");
+//                    return true;
+//                } else {
+//                    System.out.println("Elementu nie ma na stronie");
+//                    return false;
+//                }
+//            }
+//        });
+
+        /** za pomoca wyrazenia lambda */
+
+        wait.until((driver) -> {
+            List<WebElement> elements = driver.findElements(locator);
+            if (elements.size() > 0) {
+                System.out.println("Element jest na stronie");
+                return true;
+            } else {
+                System.out.println("Elementu nie ma na stronie");
+                return false;
             }
         });
     }
