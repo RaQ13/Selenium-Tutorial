@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.List;
@@ -49,8 +50,25 @@ public class FirstTest extends BaseTest{
         driver.findElement(By.id("clickOnMe")).click();
         waitForElementForExist(By.cssSelector("p"));
 
-        String paramText = driver.findElement(By.cssSelector("p")).getText();
-        Assert.assertEquals(paramText, "Dopiero się pojawiłem!");
+//        String paramText = driver.findElement(By.cssSelector("p")).getText();
+//        Assert.assertEquals(paramText, "Dopiero się pojawiłem!");
+
+        /** Asercje miękkie */
+        WebElement para = driver.findElement(By.cssSelector("p"));
+
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(para.isDisplayed(), true);
+        softAssert.assertTrue(para.isDisplayed(), "Element is not displayed");
+        softAssert.assertTrue(para.getText().startsWith("Dopiero"));
+        softAssert.assertFalse(para.getText().startsWith("Pojawiłem")); //failująca asercja
+        softAssert.assertEquals(para.getText(), "Dopiero się", "Druga failująca asercja");
+
+        //Asercje zostały tylko sprawdzone, niezasertowane
+
+        driver.quit();
+        softAssert.assertAll();
+
     }
 
     public void waitForElementForExist(By locator) {
