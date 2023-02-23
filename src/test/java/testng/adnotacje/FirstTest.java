@@ -17,15 +17,28 @@ public class FirstTest extends BaseTest{
 
     WebDriver driver;
 
-    @Test @Ignore
+    @Test
     public void firstTest() {
         driver = new ChromeDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/wait2.html");
         driver.findElement(By.id("clickOnMe")).click();
         waitForElementForExist(By.cssSelector("p"));
 
-        String paramText = driver.findElement(By.cssSelector("p")).getText();
-        Assert.assertEquals(paramText, "Dopiero się pojawiłem!");
+        //Asercje jeżeli zwracają true to nie przerywają działania testu
+        WebElement para = driver.findElement(By.cssSelector("p"));
+        //sprawdza czy element się wyświetla
+        Assert.assertEquals(para.isDisplayed(), true);
+        Assert.assertTrue(para.isDisplayed(), "Element is not displayed"); //drugi, lepszy zapis dla boolean
+        //trzeci argument to wiadomość wyświetlana w razie błędu asercji
+//        Assert.assertEquals(para.getText(), "Dopiero", "Teksty są różne"); //asercja failująca
+        Assert.assertTrue(para.getText().startsWith("Dopiero"));
+        Assert.assertFalse(para.getText().startsWith("Pojawiłem"));
+
+//        String paramText = driver.findElement(By.cssSelector("p")).getText();
+        //sprawdza czy paragraf zawiera konkretny tekst
+        Assert.assertEquals(para.getText(), "Dopiero się pojawiłem!");
+
+
         driver.quit();
     }
 
