@@ -8,12 +8,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.List;
 
+@Listeners(value = {SampleTestListener.class})// Dodanie listenera testów
 public class FirstTest extends BaseTest{
 
     WebDriver driver;
@@ -31,7 +33,7 @@ public class FirstTest extends BaseTest{
         Assert.assertEquals(para.isDisplayed(), true);
         Assert.assertTrue(para.isDisplayed(), "Element is not displayed"); //drugi, lepszy zapis dla boolean
         //trzeci argument to wiadomość wyświetlana w razie błędu asercji
-//        Assert.assertEquals(para.getText(), "Dopiero", "Teksty są różne"); //asercja failująca
+        Assert.assertEquals(para.getText(), "Dopiero", "Teksty są różne"); //asercja failująca
         Assert.assertTrue(para.getText().startsWith("Dopiero"));
         Assert.assertFalse(para.getText().startsWith("Pojawiłem"));
 
@@ -43,7 +45,7 @@ public class FirstTest extends BaseTest{
         driver.quit();
     }
 
-    @Test
+    @Test @Ignore
     public void secondTest() {
         driver = new ChromeDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/wait2.html");
