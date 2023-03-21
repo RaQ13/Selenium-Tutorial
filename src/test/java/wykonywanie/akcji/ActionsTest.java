@@ -3,6 +3,7 @@ package wykonywanie.akcji;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
@@ -10,7 +11,9 @@ public class ActionsTest {
 
     @Test
     public void actions() {
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        WebDriver driver = new ChromeDriver(options);
         driver.get("https://testeroprogramowania.github.io/selenium/fileupload.html");
 
         /** klik prawym przyciskiem myszy */
